@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smallow.webframe.modular.system.mapper.SysUserMapper">
+    <resultMap id="BaseResultMap" type="com.smallow.webframe.modular.system.model.SysUser">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="account" property="account" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="pwd" property="pwd" jdbcType="VARCHAR"/>
+        <result column="salt" property="salt" jdbcType="VARCHAR"/>
+        <result column="avatar" property="avatar" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="TINYINT"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="role_id" property="roleId" jdbcType="VARCHAR"/>
+        <result column="dept_id" property="deptId" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, name,account, salt, avatar,sex,phone, email,role_id,dept_id, status,create_time, update_time
+    </sql>
+
+    <sql id="Base_Column_List_With_Pwd">
+        id, name,account, pwd, salt, avatar,sex,phone, email,role_id,dept_id, status,create_time, update_time
+    </sql>
+    <select id="getByAccount" parameterType="java.lang.String"
+            resultType="com.smallow.webframe.modular.system.model.SysUser">
+        select
+        <include refid="Base_Column_List_With_Pwd"/>
+        FROM sys_user where account = #{account} and status != 3
+    </select>
+</mapper>

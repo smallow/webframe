@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smallow.webframe.modular.system.mapper.SysRolePriMapper" >
+  <resultMap id="BaseResultMap" type="com.smallow.webframe.modular.system.model.SysRolePri" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="pri_id" property="priId" jdbcType="INTEGER" />
+  </resultMap>
+</mapper>
