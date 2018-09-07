@@ -28,9 +28,9 @@
         id, name,account, pwd, salt, avatar,sex,phone, email,role_id,dept_id, status,create_time, update_time
     </sql>
     <select id="getByAccount" parameterType="java.lang.String"
-            resultType="com.smallow.webframe.modular.system.model.SysUser">
+            resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List_With_Pwd"/>
-        FROM sys_user where account = #{account} and status != 3
+        FROM sys_user where account = #{account} and status != 103
     </select>
 </mapper>

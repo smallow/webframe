@@ -47,16 +47,21 @@ public class MapperTest {
     @Test
     public void insertTest() {
         SysUser user = new SysUser();
-        user.setAccount("101010");
+        user.setAccount("whd");
+        user.setName("王会东");
         user.setSalt(ShiroKit.getRandomSalt(10));
-        user.setPwd(ShiroKit.md5("19860122", user.getSalt()));
-        user.setStatus(1);
+        user.setPwd(ShiroKit.md5("123", user.getSalt()));
+        user.setStatus(101);
+        user.setCreateTime(new Timestamp(new Date().getTime()));
+        user.setUpdateTime(new Timestamp(new Date().getTime()));
+        user.setRoleId("2");
+        user.setDeptId(1);
         sysUserMapper.insert(user);
     }
 
     @Test
     public void getTest() {
-        SysUser user = sysUserMapper.selectByPrimaryKey(16);
+        SysUser user = sysUserMapper.getByAccount("whd");
         System.out.println(user);
     }
 

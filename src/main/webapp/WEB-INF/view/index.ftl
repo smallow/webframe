@@ -2,11 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="${request.contextPath}/static/css/webframe.css">
-    <title>BD - 管理系统</title>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/index.css"/>
+    <#include "./common/header.ftl">
+    <script type="text/javascript" src="${ctxPath}/static/js/common-nav.js"></script>
+    <title>BD - 后台管理</title>
 </head>
 <body>
-系统主页
+<div class="container-fluid" id="publicTpl">
+    <div class="row clearfix ">
+    <#include "./common/bannner.ftl">
+    </div>
+    <div class="row clearfix">
+        <#include "./common/nav.ftl">
+        <div class="col-md-10 column main-rightContainer" style="background-color: #FFFFFF;height: 100%;min-height: 500px">
+
+            <p class="text-primary text-center">欢迎主页,我们还在考虑放点啥.....</p>
+        </div>
+    </div>
+</div>
+
+
+
 
 </body>
+
 </html>

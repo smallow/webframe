@@ -29,11 +29,7 @@ public class SysRole {
     @Column(name = "update_time")
     private Timestamp updateTime;
 
-    /**
-     * 创建人标识
-     */
-    @Column(name = "create_user_id")
-    private Integer createUserId;
+
 
 
 }

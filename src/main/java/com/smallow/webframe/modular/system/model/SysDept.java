@@ -29,11 +29,7 @@ public class SysDept {
     @Column(name = "update_time")
     private Timestamp updateTime;
 
-    /**
-     * 创建人标识
-     */
-    @Column(name = "create_user_id")
-    private Integer createUserId;
+
 
     @Column(name = "parent_id")
     private Integer parentId;
