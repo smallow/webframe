@@ -22,4 +22,18 @@
         inner join sys_privilege p on rel.pri_id = p.id
         where rel.role_id = #{roleId}
     </select>
+
+    <select id="getMenusByRoleIds" resultType="com.smallow.webframe.modular.system.node.MenuNode">
+
+        select m1.id,m1.name,m1.url,m1.`level`,m1.orders,(case when m2.id is null then 0 else m2.id end) as parentId from sys_privilege m1 left join
+        sys_privilege m2 on m1.parent_code=m2.code
+        inner join (select pri_id from sys_role_pri where role_id in(
+        <foreach collection="list" index="index" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+
+        ))m3  on m3.pri_id=m1.id where m1.is_menu =0 order by level,orders asc
+    </select>
+
+
 </mapper>

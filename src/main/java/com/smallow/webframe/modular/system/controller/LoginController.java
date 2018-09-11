@@ -2,6 +2,7 @@ package com.smallow.webframe.modular.system.controller;
 
 import com.smallow.webframe.common.controller.BaseController;
 import com.smallow.webframe.core.shiro.ShiroKit;
+import com.smallow.webframe.core.shiro.ShiroUser;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ public class LoginController extends BaseController {
             model.addAttribute("tips", "该用户没有角色，无法登陆");
             return "login";
         }
+
         return "index";
     }
 
@@ -45,6 +47,9 @@ public class LoginController extends BaseController {
         UsernamePasswordToken token=new UsernamePasswordToken(userName,password);
         token.setRememberMe(true);
         currentUser.login(token);
+        ShiroUser shiroUser=ShiroKit.getUser();
+        getSession().setAttribute("shiroUser",shiroUser);
+        getSession().setAttribute("userName",shiroUser.getAccount());
         return REDIRECT + "/";
     }
 
