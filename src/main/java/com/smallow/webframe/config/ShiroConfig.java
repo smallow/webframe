@@ -2,9 +2,12 @@ package com.smallow.webframe.config;
 
 
 import com.smallow.webframe.core.shiro.MyShiroRealm;
+import org.apache.shiro.codec.Base64;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,11 +19,34 @@ public class ShiroConfig {
 
 
     @Bean
-    public DefaultWebSecurityManager securityManager() {
+    public DefaultWebSecurityManager securityManager(CookieRememberMeManager rememberMeManager) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(myShiroRealm());
         //securityManager.setCacheManager(cacheManager);
+        securityManager.setRememberMeManager(rememberMeManager);
         return securityManager;
+    }
+
+    /**
+     * rememberMe管理器, cipherKey生成见{@code Base64Test.java}
+     */
+    @Bean
+    public CookieRememberMeManager rememberMeManager(SimpleCookie rememberMeCookie) {
+        CookieRememberMeManager manager = new CookieRememberMeManager();
+        manager.setCipherKey(Base64.decode("Z3VucwAAAAAAAAAAAAAAAA=="));
+        manager.setCookie(rememberMeCookie);
+        return manager;
+    }
+
+    /**
+     * 记住密码Cookie
+     */
+    @Bean
+    public SimpleCookie rememberMeCookie() {
+        SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
+        simpleCookie.setHttpOnly(true);
+        simpleCookie.setMaxAge(7 * 24 * 60 * 60);//7天
+        return simpleCookie;
     }
 
     /**
