@@ -2,6 +2,7 @@ package com.smallow.webframe.modular.system.node;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -20,6 +21,9 @@ public class MenuNode {
     private String url;
 
     private List<MenuNode> children;
+
+
+
 
 
 }
