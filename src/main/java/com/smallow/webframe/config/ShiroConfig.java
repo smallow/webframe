@@ -45,7 +45,8 @@ public class ShiroConfig {
     public SimpleCookie rememberMeCookie() {
         SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
         simpleCookie.setHttpOnly(true);
-        simpleCookie.setMaxAge(7 * 24 * 60 * 60);//7天
+        //simpleCookie.setMaxAge(7 * 24 * 60 * 60);//7天
+        simpleCookie.setMaxAge(60 * 60);//1小时
         return simpleCookie;
     }
 
@@ -56,6 +57,7 @@ public class ShiroConfig {
     public MyShiroRealm myShiroRealm() {
         return new MyShiroRealm();
     }
+
     /**
      * Shiro的过滤器链
      */
